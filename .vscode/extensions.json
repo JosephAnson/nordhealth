@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "antfu.goto-alias",
+    "dbaeumer.vscode-eslint",
+    "vue.volar",
+    "antfu.pnpm-catalog-lens"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "type": "module",
+  "private": true,
+  "packageManager": "pnpm@10.7.0",
+  "scripts": {
+    "build": "nuxi build",
+    "dev": "nuxi dev",
+    "generate": "nuxi generate",
+    "prepare": "nuxi prepare",
+    "start": "node .output/server/index.mjs",
+    "start:generate": "npx serve .output/public",
+    "lint": "eslint .",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@provetcloud/css": "catalog:",
+    "@provetcloud/themes": "catalog:",
+    "@provetcloud/web-components": "catalog:",
+    "@vee-validate/nuxt": "catalog:",
+    "@vee-validate/zod": "catalog:",
+    "vee-validate": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@provetcloud/web-components-vue-types": "catalog:",
+    "@antfu/eslint-config": "catalog:",
+    "@nuxt/devtools": "catalog:",
+    "@nuxt/eslint": "catalog:",
+    "@nuxtjs/color-mode": "catalog:",
+    "@tailwindcss/vite": "catalog:",
+    "eslint": "catalog:",
+    "eslint-plugin-format": "catalog:",
+    "nuxt": "catalog:",
+    "tailwindcss": "catalog:",
+    "typescript": "catalog:",
+    "vue": "catalog:",
+    "vue-tsc": "catalog:"
+  },
+  "resolutions": {
+    "@nuxt/devtools": "^2.3.2",
+    "unplugin": "^2.2.2",
+    "vite": "^6.2.3"
+  }
+}
