@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@vee-validate/nuxt',
   ],
+
   ssr: false,
 
   devtools: {
@@ -43,12 +44,15 @@ export default defineNuxtConfig({
     classSuffix: '',
   },
 
+  routeRules: {
+    '/**': { prerender: true },
+  },
+
   future: {
     compatibilityVersion: 4,
   },
 
   experimental: {
-    renderJsonPayloads: true,
     typedPages: true,
   },
 

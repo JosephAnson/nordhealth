@@ -1,4 +1,4 @@
-import isStrongPassword from 'validator/lib/isStrongPassword'
+import isStrongPassword from 'validator/lib/isStrongPassword.js'
 import * as z from 'zod'
 
 export const userSchema = z.object({
