@@ -10,7 +10,10 @@
     "start": "node .output/server/index.mjs",
     "start:generate": "npx serve .output/public",
     "lint": "eslint .",
-    "typecheck": "vue-tsc --noEmit"
+    "typecheck": "vue-tsc --noEmit",
+    "e2e": "playwright test",
+    "e2e:ui": "playwright test --ui",
+    "e2e:update": "playwright test --update-snapshots"
   },
   "dependencies": {
     "@provetcloud/css": "catalog:",
@@ -27,8 +30,11 @@
     "@nuxt/devtools": "catalog:",
     "@nuxt/eslint": "catalog:",
     "@nuxtjs/color-mode": "catalog:",
+    "@playwright/test": "catalog:",
     "@provetcloud/web-components-vue-types": "catalog:",
     "@tailwindcss/vite": "catalog:",
+    "@types/node": "catalog:",
+    "@types/validator": "catalog:",
     "eslint": "catalog:",
     "eslint-plugin-format": "catalog:",
     "nuxt": "catalog:",

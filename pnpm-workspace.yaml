@@ -3,11 +3,14 @@ catalog:
   '@nuxt/devtools': ^2.3.2
   '@nuxt/eslint': ^1.2.0
   '@nuxtjs/color-mode': ^3.5.2
+  '@playwright/test': ^1.51.1
   '@provetcloud/css': ^1.1.0
   '@provetcloud/themes': ^1.0.0
   '@provetcloud/web-components': ^1.3.3
   '@provetcloud/web-components-vue-types': ^1.3.3
   '@tailwindcss/vite': ^4.0.17
+  '@types/node': ^22.13.14
+  '@types/validator': ^13.12.3
   '@vee-validate/nuxt': ^4.15.0
   '@vee-validate/zod': ^4.15.0
   eslint: ^9.23.0

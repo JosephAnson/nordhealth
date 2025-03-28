@@ -76,6 +76,7 @@ function togglePasswordVisibility() {
         >
           <provet-button
             slot="end"
+            title="Toggle password visibility"
             type="button"
             @click="togglePasswordVisibility"
           >
@@ -96,6 +97,7 @@ function togglePasswordVisibility() {
         >
           <provet-button
             slot="end"
+            title="Toggle confirm password visibility"
             type="button"
             @click="togglePasswordVisibility"
           >

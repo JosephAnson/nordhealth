@@ -1,16 +1,18 @@
 import type { UserSchema } from '~~/schemas/user'
 import { defineEventHandler, readValidatedBody } from 'h3'
-import { userSchema } from '~~/schemas/user'
+import { updateUserSchema } from '~~/schemas/user'
 
 interface StoredUser extends UserSchema {
   createdAt: string
 }
 
 export default defineEventHandler(async (event) => {
-  const body = await readValidatedBody(event, userSchema.parse)
+  const body = await readValidatedBody(event, updateUserSchema.parse)
 
   const user: StoredUser = {
-    ...body,
+    email: body.email,
+    password: body.password,
+    receiveUpdates: body.receiveUpdates,
     createdAt: new Date().toISOString(),
   }
 

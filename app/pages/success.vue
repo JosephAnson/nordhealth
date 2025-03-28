@@ -26,7 +26,6 @@ import '@provetcloud/web-components/lib/Avatar'
           variant="primary"
           size="l"
           expand
-          @click="handleContinue"
         >
           Continue to Dashboard
           <provet-icon slot="end" name="arrow-right" />
