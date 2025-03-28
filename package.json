@@ -18,15 +18,16 @@
     "@provetcloud/web-components": "catalog:",
     "@vee-validate/nuxt": "catalog:",
     "@vee-validate/zod": "catalog:",
+    "validator": "catalog:",
     "vee-validate": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@provetcloud/web-components-vue-types": "catalog:",
     "@antfu/eslint-config": "catalog:",
     "@nuxt/devtools": "catalog:",
     "@nuxt/eslint": "catalog:",
     "@nuxtjs/color-mode": "catalog:",
+    "@provetcloud/web-components-vue-types": "catalog:",
     "@tailwindcss/vite": "catalog:",
     "eslint": "catalog:",
     "eslint-plugin-format": "catalog:",

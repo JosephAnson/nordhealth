@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { userSchema } from '~~/schemas/user'
+import { configure } from 'vee-validate'
+import { updateUserSchema } from '~~/schemas/user'
 
 import '@provetcloud/web-components/lib/Input'
 import '@provetcloud/web-components/lib/Button'
@@ -9,15 +10,20 @@ import '@provetcloud/web-components/lib/Checkbox'
 import '@provetcloud/web-components/lib/Banner'
 import '@provetcloud/web-components/lib/Divider'
 
+configure({
+  validateOnModelUpdate: false,
+})
+
 const router = useRouter()
 const showPassword = ref(false)
 
 const { values, handleSubmit, defineField, errors } = useForm({
-  validationSchema: toTypedSchema(userSchema),
+  validationSchema: toTypedSchema(updateUserSchema),
 })
 
 const [email, emailAttrs] = defineField('email')
 const [password, passwordAttrs] = defineField('password')
+const [confirmPassword, confirmPasswordAttrs] = defineField('confirmPassword')
 const [receiveUpdates, receiveUpdatesAttrs] = defineField('receiveUpdates')
 
 const { execute: registerUser, status } = useFetch('/api/auth/register', {
@@ -38,13 +44,13 @@ function togglePasswordVisibility() {
 </script>
 
 <template>
-  <div>
-    <provet-card class="w-full max-w-[700px] mx-auto mt-xxl">
-      <form class="flex flex-col space-y-l" @submit="onSubmit">
-        <h1 class="text-xxl font-semibold mb-m">
-          Create your account
-        </h1>
+  <div class="flex flex-col items-center justify-center flex-1">
+    <provet-card class="w-full max-w-[360px] mx-auto mt-xxl">
+      <h1 slot="header" class="text-l font-semibold">
+        Create your account
+      </h1>
 
+      <form class="flex flex-col space-y-l" @submit="onSubmit">
         <provet-input
           id="email"
           v-model="email"
@@ -67,6 +73,26 @@ function togglePasswordVisibility() {
           :error="errors.password"
           autocomplete="new-password"
           @blur="passwordAttrs.onBlur"
+        >
+          <provet-button
+            slot="end"
+            type="button"
+            @click="togglePasswordVisibility"
+          >
+            <provet-icon size="m" :name="showPassword ? 'interface-edit-off' : 'interface-edit-on'" />
+          </provet-button>
+        </provet-input>
+
+        <provet-input
+          id="confirmPassword"
+          v-model="confirmPassword"
+          expand
+          label="Confirm Password"
+          :type="showPassword ? 'text' : 'password'"
+          required
+          :error="errors.confirmPassword"
+          autocomplete="new-password"
+          @blur="confirmPasswordAttrs.onBlur"
         >
           <provet-button
             slot="end"

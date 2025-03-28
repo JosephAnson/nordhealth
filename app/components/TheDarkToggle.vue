@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import '@provetcloud/web-components/lib/Icon'
+
 const color = useColorMode()
 
 useHead({

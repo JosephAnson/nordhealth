@@ -1,7 +1,6 @@
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineNuxtConfig({
-
   modules: [
     '@nuxtjs/color-mode',
     '@nuxt/eslint',
@@ -36,7 +35,7 @@ export default defineNuxtConfig({
 
   vue: {
     compilerOptions: {
-      isCustomElement: tag => tag.includes('-'),
+      isCustomElement: tag => tag.includes('provet-'),
     },
   },
 

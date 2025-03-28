@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import '@provetcloud/web-components/lib/Header'
 import '@provetcloud/web-components/lib/Footer'
-import '@provetcloud/web-components/lib/Button'
-import '@provetcloud/web-components/lib/ButtonGroup'
-import '@provetcloud/web-components/lib/Icon'
 </script>
 
 <template>
@@ -13,7 +10,7 @@ import '@provetcloud/web-components/lib/Icon'
         Provet Code Challenge
       </p>
 
-      <DarkToggle slot="end" />
+      <TheDarkToggle slot="end" />
     </provet-header>
 
     <main class="flex-1 container mx-auto">
