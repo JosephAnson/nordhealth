@@ -1,5 +1,15 @@
 <script setup lang="ts">
 const router = useRouter()
+
+useHead({
+  title: '404 - Page Not Found',
+  meta: [
+    {
+      name: 'description',
+      content: 'The page you are looking for could not be found.',
+    },
+  ],
+})
 </script>
 
 <template>

@@ -2,6 +2,16 @@
 import '@provetcloud/web-components/lib/EmptyState'
 import '@provetcloud/web-components/lib/Stack'
 import '@provetcloud/web-components/lib/Button'
+
+useHead({
+  title: 'Error - Something Went Wrong',
+  meta: [
+    {
+      name: 'description',
+      content: 'An error occurred while processing your request. Please try again.',
+    },
+  ],
+})
 </script>
 
 <template>

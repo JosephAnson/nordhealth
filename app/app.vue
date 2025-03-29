@@ -1,6 +1,7 @@
 <script setup lang="ts">
 useHead({
-  title: 'Nordhealth Sign Up',
+  titleTemplate: '%s | Nordhealth',
+  title: 'Nordhealth',
 })
 </script>
 

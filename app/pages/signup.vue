@@ -14,6 +14,16 @@ configure({
   validateOnModelUpdate: false,
 })
 
+useHead({
+  title: 'Sign Up - Create Your Account',
+  meta: [
+    {
+      name: 'description',
+      content: 'Create your account to get started with Provet Cloud. Sign up now for access to our services.',
+    },
+  ],
+})
+
 const router = useRouter()
 
 const { values, handleSubmit, defineField, errors } = useForm({

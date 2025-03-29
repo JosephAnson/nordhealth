@@ -9,6 +9,16 @@ import '@provetcloud/web-components/lib/Button'
 import '@provetcloud/web-components/lib/Input'
 import '@provetcloud/web-components/lib/Icon'
 import '@provetcloud/web-components/lib/Avatar'
+
+useHead({
+  title: 'Account Created Successfully',
+  meta: [
+    {
+      name: 'description',
+      content: 'Your account has been successfully created. Welcome to Provet Cloud!',
+    },
+  ],
+})
 </script>
 
 <template>
