@@ -6,6 +6,7 @@ import '@provetcloud/web-components/lib/Icon'
 
 <template>
   <div class="font-sans bg-background min-h-screen flex flex-col">
+    <BaseSkipLink />
     <provet-header>
       <NuxtLink to="/">
         <p class="text-l">
@@ -13,15 +14,20 @@ import '@provetcloud/web-components/lib/Icon'
         </p>
       </NuxtLink>
 
-      <div slot="end" class="flex items-center gap-l">
+      <div slot="end" class="flex items-center gap-m">
         <NuxtLink target="_blank" to="https://github.com/JosephAnson/nordhealth">
-          <provet-icon name="generic-github" />
+          <provet-button square variant="plain" size="m" aria-describedby="github-tooltip">
+            <provet-icon name="generic-github" size="m" />
+          </provet-button>
+          <provet-tooltip id="github-tooltip">
+            View the code on GitHub
+          </provet-tooltip>
         </NuxtLink>
         <TheDarkToggle />
       </div>
     </provet-header>
 
-    <main class="flex-1">
+    <main id="main-content" class="flex-1">
       <slot />
     </main>
 
