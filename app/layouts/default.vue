@@ -2,6 +2,7 @@
 import '@provetcloud/web-components/lib/Header'
 import '@provetcloud/web-components/lib/Footer'
 import '@provetcloud/web-components/lib/Icon'
+import '@provetcloud/web-components/lib/Tooltip'
 </script>
 
 <template>
@@ -17,7 +18,7 @@ import '@provetcloud/web-components/lib/Icon'
       <div slot="end" class="flex items-center gap-m">
         <NuxtLink target="_blank" to="https://github.com/JosephAnson/nordhealth">
           <provet-button square variant="plain" size="m" aria-describedby="github-tooltip">
-            <provet-icon name="generic-github" size="m" />
+            <provet-icon name="generic-github" size="m" label="View the code on GitHub" />
           </provet-button>
           <provet-tooltip id="github-tooltip">
             View the code on GitHub

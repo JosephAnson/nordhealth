@@ -1,5 +1,6 @@
 catalog:
   '@antfu/eslint-config': ^4.11.0
+  '@axe-core/playwright': ^4.10.1
   '@nuxt/devtools': ^2.3.2
   '@nuxt/eslint': ^1.2.0
   '@nuxtjs/color-mode': ^3.5.2

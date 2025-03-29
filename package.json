@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:",
+    "@axe-core/playwright": "catalog:",
     "@nuxt/devtools": "catalog:",
     "@nuxt/eslint": "catalog:",
     "@nuxtjs/color-mode": "catalog:",

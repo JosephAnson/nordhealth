@@ -6,6 +6,7 @@ This repository contains a client-side rendered Nuxt 3 application that allows u
 
 ## Design Decisions
 
+- Opted to write tests with playwright over vitest, as I can focus on testing the component and not the implementation details. Unfortunately due to working with web components you're unable to use accessiblity first unit testing tools such as testing library when writing tests with vitest, unless you use some workarounds to access the shadow dom however that requires a lot of extra code and is not always reliable. So it's better to use playwright for this.
 - Opted to use TailwindCSS over using the Provet Cloud Design System css directly. This was done to better optimise the final bundle size, as importing the entire design system css would be 39kb and by using tailwind I was able to limit that to only 12kb. Also by adding the design system variables to the tailwind config I'm able to get tailwind intellisense which can recommend all the available css-variables in the design system, which improves the developer experience.
 - Naming convention for components follows: https://vuejs.org/style-guide/rules-strongly-recommended.html#base-component-names
 - No store was used in this application as it doesn't require it, depending on the use case a store could be beneficial to track the authenticated user.
@@ -20,7 +21,7 @@ This repository contains a client-side rendered Nuxt 3 application that allows u
 - 🎯 [TypeScript](https://www.typescriptlang.org/) - Type safety and enhanced developer experience
 - 🎁 [Provet Cloud Design System](https://provetcloud.design/) - Modern web components
 - 🌓 Dark/Light mode support via [@nuxtjs/color-mode](https://color-mode.nuxtjs.org/)
-- 📸 [Playwright](https://playwright.dev/) - E2E testing and visual regression testing
+- 📸 [Playwright](https://playwright.dev/) - E2E, a11y and visual regression testing
 
 ## Application Features
 

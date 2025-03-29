@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import '@provetcloud/web-components/lib/Icon'
+import '@provetcloud/web-components/lib/Tooltip'
+import '@provetcloud/web-components/lib/Button'
 
 const color = useColorMode()
 
@@ -11,6 +13,8 @@ useHead({
   }],
 })
 
+const toggleDarkModeLabel = computed(() => color.preference === 'dark' ? 'Toggle light mode' : 'Toggle dark mode')
+
 function toggleDark() {
   color.preference = color.value === 'dark' ? 'light' : 'dark'
 }
@@ -18,9 +22,9 @@ function toggleDark() {
 
 <template>
   <provet-button square variant="plain" size="m" aria-describedby="dark-toggle-tooltip" @click="toggleDark">
-    <provet-icon size="m" :name="color.preference === 'dark' ? 'interface-mode-light' : 'interface-mode-dark'" />
+    <provet-icon size="m" :name="color.preference === 'dark' ? 'interface-mode-light' : 'interface-mode-dark'" :label="toggleDarkModeLabel" />
   </provet-button>
   <provet-tooltip id="dark-toggle-tooltip">
-    Toggle {{ color.preference === 'dark' ? 'light' : 'dark' }} mode
+    {{ toggleDarkModeLabel }}
   </provet-tooltip>
 </template>

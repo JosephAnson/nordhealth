@@ -45,10 +45,14 @@ function togglePasswordVisibility() {
       :aria-describedby="`${inputId}-tooltip`"
       @click="togglePasswordVisibility"
     >
-      <provet-icon size="m" :name="showPassword ? 'interface-edit-off' : 'interface-edit-on'" />
+      <provet-icon
+        size="m"
+        :name="showPassword ? 'interface-edit-off' : 'interface-edit-on'"
+        label="Toggle password visibility"
+      />
     </provet-button>
   </provet-input>
   <provet-tooltip :id="`${inputId}-tooltip`">
-    Show / hide {{ props.inputProps.label?.toLowerCase() }}
+    Show / hide password
   </provet-tooltip>
 </template>

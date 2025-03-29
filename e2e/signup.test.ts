@@ -1,8 +1,18 @@
+import AxeBuilder from '@axe-core/playwright'
 import { expect, test } from '@playwright/test'
 
 test.describe('Signup Page', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/signup')
+  })
+
+  test('has no detectable a11y violations on load', async ({ page }) => {
+    await page.waitForLoadState('networkidle')
+    const accessibilityScanResults = await new AxeBuilder({ page })
+      .exclude('#nuxt-devtools-container')
+      .analyze()
+
+    expect(accessibilityScanResults.violations).toEqual([])
   })
 
   test('visual regression', async ({ page }) => {
@@ -32,11 +42,11 @@ test.describe('Signup Page', () => {
 
     await emailInput.fill('invalid-email')
     await emailInput.blur()
-    await expect(page.getByText('Please enter a valid email address')).toBeVisible()
+    await expect(emailInput).toHaveAccessibleDescription('Please enter a valid email address')
 
     await emailInput.fill('valid@example.com')
     await emailInput.blur()
-    await expect(page.getByText('Please enter a valid email address')).not.toBeVisible()
+    await expect(emailInput).not.toHaveAccessibleDescription('Please enter a valid email address')
   })
 
   test('should validate password requirements', async ({ page }) => {
@@ -44,11 +54,11 @@ test.describe('Signup Page', () => {
 
     await passwordInput.fill('short')
     await passwordInput.blur()
-    await expect(page.getByText(/Password must be at least/)).toBeVisible()
+    await expect(passwordInput).toHaveAccessibleDescription(/Password must be at least/i)
 
     await passwordInput.fill('ValidPassword123!')
     await passwordInput.blur()
-    await expect(page.getByText(/Password must be at least/)).not.toBeVisible()
+    await expect(passwordInput).not.toHaveAccessibleDescription(/Password must be at least/i)
   })
 
   test('should validate password confirmation', async ({ page }) => {
@@ -60,43 +70,30 @@ test.describe('Signup Page', () => {
     await passwordInput.fill('ValidPassword123!')
     await confirmPasswordInput.fill('DifferentPassword123!')
     await confirmPasswordInput.blur()
-    await expect(page.getByText('Passwords do not match')).toBeVisible()
+    await expect(confirmPasswordInput).toHaveAccessibleDescription('Passwords do not match')
 
     await confirmPasswordInput.fill('ValidPassword123!')
     await confirmPasswordInput.blur()
-    await expect(page.getByText('Passwords do not match')).not.toBeVisible()
+    await expect(confirmPasswordInput).not.toHaveAccessibleDescription('Passwords do not match')
   })
 
   test('should toggle password visibility', async ({ page }) => {
     const passwordInput = page.getByRole('textbox', { name: 'Password', exact: true })
     const confirmPasswordInput = page.getByRole('textbox', { name: 'Confirm Password' })
-    const toggleButtons = page.getByTitle('Toggle confirm password').getByRole('button')
+    const togglePasswordButton = page.getByRole('button', { name: 'Toggle password visibility' }).nth(0)
+    const toggleConfirmPasswordButton = page.getByRole('button', { name: 'Toggle password visibility' }).nth(1)
 
     // Initially passwords should be hidden
     await expect(passwordInput).toHaveAttribute('type', 'password')
     await expect(confirmPasswordInput).toHaveAttribute('type', 'password')
 
     // Click toggle button
-    await toggleButtons.click()
+    await togglePasswordButton.click()
+    await toggleConfirmPasswordButton.click()
 
     // Passwords should be visible
     await expect(passwordInput).toHaveAttribute('type', 'text')
     await expect(confirmPasswordInput).toHaveAttribute('type', 'text')
-  })
-
-  test('should enable submit button when form is valid', async ({ page }) => {
-    const emailInput = page.getByRole('textbox', { name: 'Email' })
-    const passwordInput = page.getByRole('textbox', { name: 'Password', exact: true })
-    const confirmPasswordInput = page.getByRole('textbox', { name: 'Confirm Password' })
-    const submitButton = page.getByRole('button', { name: 'Sign up' })
-
-    await expect(submitButton).toBeVisible()
-
-    await emailInput.fill('test@example.com')
-    await passwordInput.fill('ValidPassword123!')
-    await confirmPasswordInput.fill('ValidPassword123!')
-
-    await expect(submitButton).toBeVisible()
   })
 
   test('should handle successful signup', async ({ page }) => {
