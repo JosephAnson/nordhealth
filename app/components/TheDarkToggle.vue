@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import '@provetcloud/web-components/lib/Icon'
-import '@provetcloud/web-components/lib/Tooltip'
-import '@provetcloud/web-components/lib/Button'
-
 const color = useColorMode()
 
 useHead({

@@ -2,11 +2,6 @@
 import type { Input } from '@provetcloud/web-components'
 import type { WCProps } from '@provetcloud/web-components-vue-types'
 
-import '@provetcloud/web-components/lib/Input'
-import '@provetcloud/web-components/lib/Button'
-import '@provetcloud/web-components/lib/Icon'
-import '@provetcloud/web-components/lib/Tooltip'
-
 interface Props {
   modelValue?: string
   inputProps: WCProps<Input>

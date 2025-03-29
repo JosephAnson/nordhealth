@@ -1,4 +1,5 @@
 import tailwindcss from '@tailwindcss/vite'
+import provetAutoImport from './vite/plugins/provet-auto-import'
 
 export default defineNuxtConfig({
   modules: [
@@ -62,6 +63,7 @@ export default defineNuxtConfig({
   vite: {
     plugins: [
       tailwindcss(),
+      provetAutoImport(),
     ],
   },
 

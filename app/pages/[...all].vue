@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import '@provetcloud/web-components/lib/EmptyState'
-import '@provetcloud/web-components/lib/Stack'
-import '@provetcloud/web-components/lib/Button'
-
 useHead({
   title: '404 - Page Not Found',
   meta: [

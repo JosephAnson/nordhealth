@@ -5,22 +5,33 @@ settings:
   excludeLinksFromLockfile: false
 
 catalogs:
-  default:
+  cli:
     '@antfu/eslint-config':
       specifier: ^4.11.0
       version: 4.11.0
-    '@axe-core/playwright':
-      specifier: ^4.10.1
-      version: 4.10.1
+    eslint:
+      specifier: ^9.23.0
+      version: 9.23.0
+    eslint-plugin-format:
+      specifier: ^1.0.1
+      version: 1.0.1
+    typescript:
+      specifier: ^5.8.2
+      version: 5.8.2
+    vue-tsc:
+      specifier: ^2.2.8
+      version: 2.2.8
+  nuxt:
     '@nuxt/eslint':
       specifier: ^1.2.0
       version: 1.2.0
     '@nuxtjs/color-mode':
       specifier: ^3.5.2
       version: 3.5.2
-    '@playwright/test':
-      specifier: ^1.51.1
-      version: 1.51.1
+    nuxt:
+      specifier: ^3.16.1
+      version: 3.16.1
+  prod:
     '@provetcloud/css':
       specifier: ^1.1.0
       version: 1.1.0
@@ -36,33 +47,15 @@ catalogs:
     '@tailwindcss/vite':
       specifier: ^4.0.17
       version: 4.0.17
-    '@types/node':
-      specifier: ^22.13.14
-      version: 22.13.14
-    '@types/validator':
-      specifier: ^13.12.3
-      version: 13.12.3
     '@vee-validate/nuxt':
       specifier: ^4.15.0
       version: 4.15.0
     '@vee-validate/zod':
       specifier: ^4.15.0
       version: 4.15.0
-    eslint:
-      specifier: ^9.23.0
-      version: 9.23.0
-    eslint-plugin-format:
-      specifier: ^1.0.1
-      version: 1.0.1
-    nuxt:
-      specifier: ^3.16.1
-      version: 3.16.1
     tailwindcss:
       specifier: ^4.0.17
       version: 4.0.17
-    typescript:
-      specifier: ^5.8.2
-      version: 5.8.2
     validator:
       specifier: ^13.15.0
       version: 13.15.0
@@ -72,12 +65,23 @@ catalogs:
     vue:
       specifier: ^3.5.13
       version: 3.5.13
-    vue-tsc:
-      specifier: ^2.2.8
-      version: 2.2.8
     zod:
       specifier: ^3.24.2
       version: 3.24.2
+  testing:
+    '@axe-core/playwright':
+      specifier: ^4.10.1
+      version: 4.10.1
+    '@playwright/test':
+      specifier: ^1.51.1
+      version: 1.51.1
+  types:
+    '@types/node':
+      specifier: ^22.13.14
+      version: 22.13.14
+    '@types/validator':
+      specifier: ^13.12.3
+      version: 13.12.3
 
 overrides:
   '@nuxt/devtools': ^2.3.2
@@ -89,80 +93,80 @@ importers:
   .:
     dependencies:
       '@provetcloud/css':
-        specifier: 'catalog:'
+        specifier: catalog:prod
         version: 1.1.0
       '@provetcloud/themes':
-        specifier: 'catalog:'
+        specifier: catalog:prod
         version: 1.0.0
       '@provetcloud/web-components':
-        specifier: 'catalog:'
+        specifier: catalog:prod
         version: 1.3.3
       '@vee-validate/nuxt':
-        specifier: 'catalog:'
+        specifier: catalog:prod
         version: 4.15.0(magicast@0.3.5)(vue@3.5.13(typescript@5.8.2))
       '@vee-validate/zod':
-        specifier: 'catalog:'
+        specifier: catalog:prod
         version: 4.15.0(vue@3.5.13(typescript@5.8.2))(zod@3.24.2)
       validator:
-        specifier: 'catalog:'
+        specifier: catalog:prod
         version: 13.15.0
       vee-validate:
-        specifier: 'catalog:'
+        specifier: catalog:prod
         version: 4.15.0(vue@3.5.13(typescript@5.8.2))
       zod:
-        specifier: 'catalog:'
+        specifier: catalog:prod
         version: 3.24.2
     devDependencies:
       '@antfu/eslint-config':
-        specifier: 'catalog:'
+        specifier: catalog:cli
         version: 4.11.0(@typescript-eslint/utils@8.28.0(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2))(@vue/compiler-sfc@3.5.13)(eslint-plugin-format@1.0.1(eslint@9.23.0(jiti@2.4.2)))(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2)
       '@axe-core/playwright':
-        specifier: 'catalog:'
+        specifier: catalog:testing
         version: 4.10.1(playwright-core@1.51.1)
       '@nuxt/devtools':
         specifier: ^2.3.2
         version: 2.3.2(vite@6.2.3(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.7.0))(vue@3.5.13(typescript@5.8.2))
       '@nuxt/eslint':
-        specifier: 'catalog:'
+        specifier: catalog:nuxt
         version: 1.2.0(@vue/compiler-sfc@3.5.13)(eslint-plugin-format@1.0.1(eslint@9.23.0(jiti@2.4.2)))(eslint@9.23.0(jiti@2.4.2))(magicast@0.3.5)(typescript@5.8.2)(vite@6.2.3(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.7.0))
       '@nuxtjs/color-mode':
-        specifier: 'catalog:'
+        specifier: catalog:nuxt
         version: 3.5.2(magicast@0.3.5)
       '@playwright/test':
-        specifier: 'catalog:'
+        specifier: catalog:testing
         version: 1.51.1
       '@provetcloud/web-components-vue-types':
-        specifier: 'catalog:'
+        specifier: catalog:prod
         version: 1.3.3
       '@tailwindcss/vite':
-        specifier: 'catalog:'
+        specifier: catalog:prod
         version: 4.0.17(vite@6.2.3(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.7.0))
       '@types/node':
-        specifier: 'catalog:'
+        specifier: catalog:types
         version: 22.13.14
       '@types/validator':
-        specifier: 'catalog:'
+        specifier: catalog:types
         version: 13.12.3
       eslint:
-        specifier: 'catalog:'
+        specifier: catalog:cli
         version: 9.23.0(jiti@2.4.2)
       eslint-plugin-format:
-        specifier: 'catalog:'
+        specifier: catalog:cli
         version: 1.0.1(eslint@9.23.0(jiti@2.4.2))
       nuxt:
-        specifier: 'catalog:'
+        specifier: catalog:nuxt
         version: 3.16.1(@parcel/watcher@2.5.1)(@types/node@22.13.14)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(lightningcss@1.29.2)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.37.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.3(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(yaml@2.7.0)
       tailwindcss:
-        specifier: 'catalog:'
+        specifier: catalog:prod
         version: 4.0.17
       typescript:
-        specifier: 'catalog:'
+        specifier: catalog:cli
         version: 5.8.2
       vue:
-        specifier: 'catalog:'
+        specifier: catalog:prod
         version: 3.5.13(typescript@5.8.2)
       vue-tsc:
-        specifier: 'catalog:'
+        specifier: catalog:cli
         version: 2.2.8(typescript@5.8.2)
 
 packages:

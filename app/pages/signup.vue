@@ -2,14 +2,6 @@
 import { configure } from 'vee-validate'
 import { updateUserSchema } from '~~/schemas/user'
 
-import '@provetcloud/web-components/lib/Input'
-import '@provetcloud/web-components/lib/Button'
-import '@provetcloud/web-components/lib/Stack'
-import '@provetcloud/web-components/lib/Card'
-import '@provetcloud/web-components/lib/Checkbox'
-import '@provetcloud/web-components/lib/Banner'
-import '@provetcloud/web-components/lib/Divider'
-
 configure({
   validateOnModelUpdate: false,
 })
