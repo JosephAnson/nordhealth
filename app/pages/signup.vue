@@ -15,7 +15,6 @@ configure({
 })
 
 const router = useRouter()
-const showPassword = ref(false)
 
 const { values, handleSubmit, defineField, errors } = useForm({
   validationSchema: toTypedSchema(updateUserSchema),
@@ -40,10 +39,6 @@ const { execute: registerUser, status } = useFetch('/api/auth/register', {
 })
 
 const onSubmit = handleSubmit(() => registerUser())
-
-function togglePasswordVisibility() {
-  showPassword.value = !showPassword.value
-}
 </script>
 
 <template>
@@ -62,57 +57,43 @@ function togglePasswordVisibility() {
             type="email"
             expand
             required
+            placeholder="you@example.com"
             :error="errors.email"
             autocomplete="email"
             @blur="emailAttrs.onBlur"
           />
 
-          <provet-input
+          <BasePasswordInput
             id="password"
             v-model="password"
-            expand
-            label="Password"
-            :type="showPassword ? 'text' : 'password'"
-            required
-            :error="errors.password"
-            autocomplete="new-password"
+            :input-props="{
+              label: 'Password',
+              expand: true,
+              required: true,
+              error: errors.password,
+              autocomplete: 'new-password',
+            }"
             @blur="passwordAttrs.onBlur"
-          >
-            <provet-button
-              slot="end"
-              title="Toggle password visibility"
-              type="button"
-              @click="togglePasswordVisibility"
-            >
-              <provet-icon size="m" :name="showPassword ? 'interface-edit-off' : 'interface-edit-on'" />
-            </provet-button>
-          </provet-input>
+          />
 
-          <provet-input
+          <BasePasswordInput
             id="confirmPassword"
             v-model="confirmPassword"
-            expand
-            label="Confirm Password"
-            :type="showPassword ? 'text' : 'password'"
-            required
-            :error="errors.confirmPassword"
-            autocomplete="new-password"
+            :input-props="{
+              label: 'Confirm password',
+              expand: true,
+              required: true,
+              error: errors.confirmPassword,
+              autocomplete: 'new-password',
+            }"
             @blur="confirmPasswordAttrs.onBlur"
-          >
-            <provet-button
-              slot="end"
-              title="Toggle confirm password visibility"
-              type="button"
-              @click="togglePasswordVisibility"
-            >
-              <provet-icon size="m" :name="showPassword ? 'interface-edit-off' : 'interface-edit-on'" />
-            </provet-button>
-          </provet-input>
+          />
 
           <provet-checkbox
             id="receiveUpdates"
             v-model="receiveUpdates"
             type="checkbox"
+            hint="Optional"
             label="I'd like to receive occasional product updates and announcements"
             :error="errors.receiveUpdates"
             @blur="receiveUpdatesAttrs.onBlur"

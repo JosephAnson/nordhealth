@@ -17,7 +17,10 @@ function toggleDark() {
 </script>
 
 <template>
-  <button class="!outline-none" @click="toggleDark">
-    <provet-icon :name="color.preference === 'dark' ? 'interface-mode-light' : 'interface-mode-dark'" />
-  </button>
+  <provet-button square variant="plain" size="m" aria-describedby="dark-toggle-tooltip" @click="toggleDark">
+    <provet-icon size="m" :name="color.preference === 'dark' ? 'interface-mode-light' : 'interface-mode-dark'" />
+  </provet-button>
+  <provet-tooltip id="dark-toggle-tooltip">
+    Toggle {{ color.preference === 'dark' ? 'light' : 'dark' }} mode
+  </provet-tooltip>
 </template>
