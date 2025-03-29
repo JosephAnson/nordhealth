@@ -34,6 +34,9 @@ const { execute: registerUser, status } = useFetch('/api/auth/register', {
   async onResponse() {
     await router.push('/success')
   },
+  onRequestError() {
+    router.push('/error')
+  },
 })
 
 const onSubmit = handleSubmit(() => registerUser())
@@ -44,82 +47,84 @@ function togglePasswordVisibility() {
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center flex-1">
-    <provet-card class="w-full max-w-[360px] mx-auto mt-xxl">
-      <h1 slot="header" class="text-l font-semibold">
-        Create your account
-      </h1>
+  <BaseContainer>
+    <div class="flex flex-col items-center justify-center flex-1">
+      <provet-card class="w-full max-w-[360px] mx-auto mt-xxl">
+        <h1 slot="header" class="text-l font-semibold">
+          Create your account
+        </h1>
 
-      <form class="flex flex-col space-y-l" @submit="onSubmit">
-        <provet-input
-          id="email"
-          v-model="email"
-          label="Email"
-          type="email"
-          expand
-          required
-          :error="errors.email"
-          autocomplete="email"
-          @blur="emailAttrs.onBlur"
-        />
+        <form class="flex flex-col space-y-l" @submit="onSubmit">
+          <provet-input
+            id="email"
+            v-model="email"
+            label="Email"
+            type="email"
+            expand
+            required
+            :error="errors.email"
+            autocomplete="email"
+            @blur="emailAttrs.onBlur"
+          />
 
-        <provet-input
-          id="password"
-          v-model="password"
-          expand
-          label="Password"
-          :type="showPassword ? 'text' : 'password'"
-          required
-          :error="errors.password"
-          autocomplete="new-password"
-          @blur="passwordAttrs.onBlur"
-        >
-          <provet-button
-            slot="end"
-            title="Toggle password visibility"
-            type="button"
-            @click="togglePasswordVisibility"
+          <provet-input
+            id="password"
+            v-model="password"
+            expand
+            label="Password"
+            :type="showPassword ? 'text' : 'password'"
+            required
+            :error="errors.password"
+            autocomplete="new-password"
+            @blur="passwordAttrs.onBlur"
           >
-            <provet-icon size="m" :name="showPassword ? 'interface-edit-off' : 'interface-edit-on'" />
-          </provet-button>
-        </provet-input>
+            <provet-button
+              slot="end"
+              title="Toggle password visibility"
+              type="button"
+              @click="togglePasswordVisibility"
+            >
+              <provet-icon size="m" :name="showPassword ? 'interface-edit-off' : 'interface-edit-on'" />
+            </provet-button>
+          </provet-input>
 
-        <provet-input
-          id="confirmPassword"
-          v-model="confirmPassword"
-          expand
-          label="Confirm Password"
-          :type="showPassword ? 'text' : 'password'"
-          required
-          :error="errors.confirmPassword"
-          autocomplete="new-password"
-          @blur="confirmPasswordAttrs.onBlur"
-        >
-          <provet-button
-            slot="end"
-            title="Toggle confirm password visibility"
-            type="button"
-            @click="togglePasswordVisibility"
+          <provet-input
+            id="confirmPassword"
+            v-model="confirmPassword"
+            expand
+            label="Confirm Password"
+            :type="showPassword ? 'text' : 'password'"
+            required
+            :error="errors.confirmPassword"
+            autocomplete="new-password"
+            @blur="confirmPasswordAttrs.onBlur"
           >
-            <provet-icon size="m" :name="showPassword ? 'interface-edit-off' : 'interface-edit-on'" />
+            <provet-button
+              slot="end"
+              title="Toggle confirm password visibility"
+              type="button"
+              @click="togglePasswordVisibility"
+            >
+              <provet-icon size="m" :name="showPassword ? 'interface-edit-off' : 'interface-edit-on'" />
+            </provet-button>
+          </provet-input>
+
+          <provet-checkbox
+            id="receiveUpdates"
+            v-model="receiveUpdates"
+            type="checkbox"
+            label="I'd like to receive occasional product updates and announcements"
+            :error="errors.receiveUpdates"
+            @blur="receiveUpdatesAttrs.onBlur"
+          />
+
+          <provet-divider class="divider mb-l" />
+
+          <provet-button type="submit" variant="primary" size="l" expand :loading="status === 'pending'">
+            Sign up
           </provet-button>
-        </provet-input>
-
-        <provet-checkbox
-          id="receiveUpdates"
-          v-model="receiveUpdates"
-          type="checkbox"
-          label="I'd like to receive occasional product updates and announcements"
-          :error="errors.receiveUpdates"
-          @blur="receiveUpdatesAttrs.onBlur"
-        />
-
-        <provet-divider class="divider mb-l" />
-
-        <provet-button type="submit" variant="primary" size="l" expand :loading="status === 'pending'">
-          Sign up
-        </provet-button>
-      </form>
-    </provet-card>
-  </div>
+        </form>
+      </provet-card>
+    </div>
+  </BaseContainer>
 </template>

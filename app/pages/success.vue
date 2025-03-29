@@ -12,25 +12,27 @@ import '@provetcloud/web-components/lib/Avatar'
 </script>
 
 <template>
-  <provet-card class="w-full max-w-[700px] mx-auto mt-xxl">
-    <provet-banner variant="success" class="mb-l">
-      <h1 class="text-xl font-heading">
-        Account Created Successfully! 🎉
-      </h1>
-      <p>Your account has been created and you're ready to get started.</p>
-    </provet-banner>
+  <BaseContainer>
+    <provet-card class="w-full max-w-[700px] mx-auto mt-xxl">
+      <provet-banner variant="success" class="mb-l">
+        <h1 class="text-xl font-heading">
+          Account Created Successfully! 🎉
+        </h1>
+        <p>Your account has been created and you're ready to get started.</p>
+      </provet-banner>
 
-    <div class="flex flex-col gap-m mt-m">
-      <NuxtLink to="/">
-        <provet-button
-          variant="primary"
-          size="l"
-          expand
-        >
-          Continue to Dashboard
-          <provet-icon slot="end" name="arrow-right" />
-        </provet-button>
-      </NuxtLink>
-    </div>
-  </provet-card>
+      <div class="flex flex-col gap-m mt-m">
+        <NuxtLink to="/">
+          <provet-button
+            variant="primary"
+            size="l"
+            expand
+          >
+            Continue to Dashboard
+            <provet-icon slot="end" name="arrow-right" />
+          </provet-button>
+        </NuxtLink>
+      </div>
+    </provet-card>
+  </BaseContainer>
 </template>
