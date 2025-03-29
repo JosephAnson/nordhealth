@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const router = useRouter()
+import '@provetcloud/web-components/lib/EmptyState'
+import '@provetcloud/web-components/lib/Stack'
+import '@provetcloud/web-components/lib/Button'
 
 useHead({
   title: '404 - Page Not Found',
@@ -13,15 +15,22 @@ useHead({
 </script>
 
 <template>
-  <main p="x4 y10" text="center teal-700 dark:gray-200">
-    <div text-4xl>
-      <div i-carbon-warning inline-block />
-    </div>
-    <div>Not found</div>
-    <div>
-      <button text-sm btn m="3 t8" @click="router.push('/')">
-        Back
-      </button>
-    </div>
-  </main>
+  <BaseContainer>
+    <provet-empty-state class="bg-transparent">
+      <h1 class="text-xl font-heading">
+        Page Not Found
+      </h1>
+      <div class="text-4xl mb-m">
+        <provet-icon name="interface-warning" size="xl" />
+      </div>
+      <p>The page you are looking for could not be found.</p>
+      <provet-stack justify-content="center" gap="s" direction="horizontal">
+        <NuxtLink to="/">
+          <provet-button variant="primary">
+            Back to Home
+          </provet-button>
+        </NuxtLink>
+      </provet-stack>
+    </provet-empty-state>
+  </BaseContainer>
 </template>

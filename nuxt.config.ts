@@ -17,7 +17,7 @@ export default defineNuxtConfig({
     head: {
       htmlAttrs: {
         class: 'n-reset',
-        lang: 'en'
+        lang: 'en',
       },
       viewport: 'width=device-width,initial-scale=1',
       link: [

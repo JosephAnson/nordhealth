@@ -24,10 +24,10 @@ useHead({
 <template>
   <BaseContainer>
     <provet-card class="w-full max-w-[700px] mx-auto mt-xxl">
+      <h1 slot="header" class="font-heading">
+        Account Created Successfully!
+      </h1>
       <provet-banner variant="success" class="mb-l">
-        <h1 class="text-xl font-heading">
-          Account Created Successfully! 🎉
-        </h1>
         <p>Your account has been created and you're ready to get started.</p>
       </provet-banner>
 

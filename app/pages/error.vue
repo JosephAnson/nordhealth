@@ -16,8 +16,10 @@ useHead({
 
 <template>
   <provet-empty-state class="bg-transparent">
-    <h1>Something's wrong</h1>
-    <p> Looks like something went wrong. Click Retry to try again.</p>
+    <h1 class="text-xl font-heading">
+      Something's wrong
+    </h1>
+    <p>Looks like something went wrong. Click Retry to try again.</p>
 
     <provet-stack justify-content="center" gap="s" direction="horizontal">
       <NuxtLink to="/">
