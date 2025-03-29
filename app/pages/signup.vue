@@ -59,61 +59,63 @@ const onSubmit = handleSubmit(() => registerUser())
           Create your account
         </h1>
 
-        <form class="flex flex-col space-y-l" @submit="onSubmit">
-          <provet-input
-            id="email"
-            v-model="email"
-            label="Email"
-            type="email"
-            expand
-            required
-            placeholder="you@example.com"
-            :error="errors.email"
-            autocomplete="email"
-            @blur="emailAttrs.onBlur"
-          />
+        <form @submit="onSubmit">
+          <provet-stack>
+            <provet-input
+              id="email"
+              v-model="email"
+              label="Email"
+              type="email"
+              expand
+              required
+              placeholder="you@example.com"
+              :error="errors.email"
+              autocomplete="email"
+              @blur="emailAttrs.onBlur"
+            />
 
-          <BasePasswordInput
-            id="password"
-            v-model="password"
-            :input-props="{
-              label: 'Password',
-              expand: true,
-              required: true,
-              error: errors.password,
-              autocomplete: 'new-password',
-            }"
-            @blur="passwordAttrs.onBlur"
-          />
+            <BasePasswordInput
+              id="password"
+              v-model="password"
+              :input-props="{
+                label: 'Password',
+                expand: true,
+                required: true,
+                error: errors.password,
+                autocomplete: 'new-password',
+              }"
+              @blur="passwordAttrs.onBlur"
+            />
 
-          <BasePasswordInput
-            id="confirmPassword"
-            v-model="confirmPassword"
-            :input-props="{
-              label: 'Confirm password',
-              expand: true,
-              required: true,
-              error: errors.confirmPassword,
-              autocomplete: 'new-password',
-            }"
-            @blur="confirmPasswordAttrs.onBlur"
-          />
+            <BasePasswordInput
+              id="confirmPassword"
+              v-model="confirmPassword"
+              :input-props="{
+                label: 'Confirm password',
+                expand: true,
+                required: true,
+                error: errors.confirmPassword,
+                autocomplete: 'new-password',
+              }"
+              @blur="confirmPasswordAttrs.onBlur"
+            />
 
-          <provet-checkbox
-            id="receiveUpdates"
-            v-model="receiveUpdates"
-            type="checkbox"
-            hint="Optional"
-            label="I'd like to receive occasional product updates and announcements"
-            :error="errors.receiveUpdates"
-            @blur="receiveUpdatesAttrs.onBlur"
-          />
+            <provet-checkbox
+              id="receiveUpdates"
+              v-model="receiveUpdates"
+              type="checkbox"
+              hint="Optional"
+              label="I'd like to receive occasional product updates and announcements"
+              :error="errors.receiveUpdates"
+              @blur="receiveUpdatesAttrs.onBlur"
+            />
 
-          <provet-divider class="divider mb-l" />
+            <provet-divider class="divider mb-l" />
 
-          <provet-button type="submit" variant="primary" size="l" expand :loading="status === 'pending'">
-            Sign up
-          </provet-button>
+            <provet-button type="submit" variant="primary" size="l" expand :loading="status === 'pending'">
+              Sign up
+            </provet-button>
+          </provet-stack>
         </form>
       </provet-card>
     </div>
