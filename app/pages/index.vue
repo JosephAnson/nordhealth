@@ -1,5 +1,13 @@
 <script setup lang="ts">
 const { isAuthenticated } = useAuth()
+
+useHead({
+  title: 'Redefining digital healthcare',
+  titleTemplate: 'NordHealth | %s',
+  meta: [
+    { name: 'description', content: 'Redefining digital healthcare' },
+  ],
+})
 </script>
 
 <template>
