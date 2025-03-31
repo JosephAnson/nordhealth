@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 
+@source "../node_modules/@provetcloud/web-components/lib";
+
 @custom-variant dark (&:is(.dark *));
 
 @font-face {
@@ -158,7 +160,7 @@
   --n-index-modal: 1000;
 }
 
-@theme {
+@theme inline {
   --*: initial;
 
   /* Colors */

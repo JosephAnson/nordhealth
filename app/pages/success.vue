@@ -1,4 +1,14 @@
 <script setup lang="ts">
+import '@provetcloud/web-components/lib/Stack'
+
+definePageMeta({
+  middleware: [
+    'auth',
+  ],
+})
+
+const { data: session } = await useFetch('/api/auth/session')
+const { signout } = useAuth()
 useHead({
   title: 'Account Created Successfully',
   meta: [
@@ -12,26 +22,28 @@ useHead({
 
 <template>
   <BaseContainer>
-    <provet-card class="w-full max-w-[700px] mx-auto mt-l m:mt-xxl">
+    <provet-card class="w-full max-w-[700px] mx-auto">
       <h1 slot="header" class="font-heading">
-        Account Created Successfully!
+        Dashboard: Account Created Successfully!
       </h1>
 
-      <provet-banner variant="success" class="mb-l">
-        Your account has been created and you're ready to get started.
+      <provet-banner variant="success" class="flex">
+        Account created for email ({{ session.email }}), you're ready to get started.
       </provet-banner>
 
-      <div class="flex flex-col gap-m mt-m">
-        <NuxtLink to="/">
-          <provet-button
-            variant="primary"
-            size="l"
-            expand
-          >
-            Continue to Dashboard
-            <provet-icon slot="end" name="arrow-right" />
-          </provet-button>
-        </NuxtLink>
+      <div slot="footer">
+        <hr class="divider">
+
+        <provet-button
+          variant="primary"
+          size="l"
+          expand
+          class="mt-m"
+          @click="signout"
+        >
+          Sign out
+          <provet-icon slot="end" name="arrow-right" />
+        </provet-button>
       </div>
     </provet-card>
   </BaseContainer>

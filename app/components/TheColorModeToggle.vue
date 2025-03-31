@@ -49,19 +49,28 @@ useHead({
 </script>
 
 <template>
-  <div class="flex gap-m">
-    <provet-button square variant="plain" size="m" aria-describedby="dark-toggle-tooltip" @click="toggleDark">
-      <provet-icon size="m" :name="isDark ? 'interface-mode-light' : 'interface-mode-dark'" :label="darkModeLabel" />
+  <provet-dropdown>
+    <provet-button title="Interface options" slot="toggle" variant="plain" aria-describedby="color-mode-tooltip">
+      <provet-icon size="m" name="navigation-settings" />
+      <provet-visually-hidden>
+        Interface options
+      </provet-visually-hidden>
     </provet-button>
-    <provet-tooltip id="dark-toggle-tooltip">
-      {{ darkModeLabel }}
-    </provet-tooltip>
-
-    <provet-button square variant="plain" size="m" aria-describedby="contrast-toggle-tooltip" @click="toggleContrast">
-      <provet-icon size="m" :name="isHighContrast ? 'interface-partially-complete-small' : 'interface-complete-small'" :label="contrastModeLabel" />
-    </provet-button>
-    <provet-tooltip id="contrast-toggle-tooltip">
-      {{ contrastModeLabel }}
-    </provet-tooltip>
-  </div>
+    <div slot="header">
+      Interface options
+    </div>
+    <provet-dropdown-group class="px-s">
+      <provet-dropdown-item @click="toggleDark">
+        {{ darkModeLabel }}
+        <provet-icon slot="end" aria-hidden="true" :name="isDark ? 'interface-mode-light' : 'interface-mode-dark'" />
+      </provet-dropdown-item>
+      <provet-dropdown-item @click="toggleContrast">
+        {{ contrastModeLabel }}
+        <provet-icon slot="end" aria-hidden="true" :name="isHighContrast ? 'interface-partially-complete-small' : 'interface-complete-small'" />
+      </provet-dropdown-item>
+    </provet-dropdown-group>
+  </provet-dropdown>
+  <provet-tooltip id="color-mode-tooltip">
+    Interface options
+  </provet-tooltip>
 </template>

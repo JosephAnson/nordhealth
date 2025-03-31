@@ -11,7 +11,7 @@ useHead({
 </script>
 
 <template>
-  <provet-empty-state class="bg-transparent mt-l m:mt-xxl">
+  <provet-empty-state class="bg-transparent">
     <h1 class="text-xl font-heading">
       Something's wrong
     </h1>

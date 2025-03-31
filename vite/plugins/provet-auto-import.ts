@@ -11,23 +11,28 @@ interface ProvetAutoImportOptions {
 /**
  * A map of Provet component names to their import paths
  */
-const PROVET_COMPONENTS = new Map([
-  ['provet-button', 'Button'],
-  ['provet-icon', 'Icon'],
-  ['provet-tooltip', 'Tooltip'],
-  ['provet-input', 'Input'],
-  ['provet-stack', 'Stack'],
-  ['provet-card', 'Card'],
-  ['provet-banner', 'Banner'],
-  ['provet-checkbox', 'Checkbox'],
-  ['provet-divider', 'Divider'],
-  ['provet-empty-state', 'EmptyState'],
-  ['provet-header', 'Header'],
-  ['provet-footer', 'Footer'],
-  ['provet-layout', 'Layout'],
-  ['provet-navigation', 'Navigation'],
-  ['provet-top-bar', 'TopBar'],
-  ['provet-avatar', 'Avatar'],
+const PROVET_COMPONENTS = new Map<string, string[]>([
+  ['provet-button', ['Button']],
+  ['provet-icon', ['Icon']],
+  ['provet-tooltip', ['Tooltip']],
+  ['provet-input', ['Input']],
+  ['provet-stack', ['Stack']],
+  ['provet-card', ['Card']],
+  ['provet-banner', ['Banner', 'Stack']], // TODO: Fix Banner as it should require Stack automatically this is a bug
+  ['provet-checkbox', ['Checkbox']],
+  ['provet-divider', ['Divider']],
+  ['provet-empty-state', ['EmptyState']],
+  ['provet-header', ['Header']],
+  ['provet-footer', ['Footer']],
+  ['provet-layout', ['Layout']],
+  ['provet-navigation', ['Navigation']],
+  ['provet-top-bar', ['TopBar']],
+  ['provet-avatar', ['Avatar']],
+  ['provet-dropdown', ['Dropdown']],
+  ['provet-dropdown-item', ['DropdownItem']],
+  ['provet-dropdown-group', ['DropdownGroup']],
+  ['provet-avatar', ['Avatar']],
+  ['provet-visually-hidden', ['VisuallyHidden']],
 ])
 
 export default function provetAutoImport(options: ProvetAutoImportOptions = {}): Plugin {
@@ -44,9 +49,9 @@ export default function provetAutoImport(options: ProvetAutoImportOptions = {}):
 
       // Find all used Provet components in the template
       const usedComponents = new Set<string>()
-      for (const [tagName, componentName] of PROVET_COMPONENTS.entries()) {
+      for (const [tagName, componentNames] of PROVET_COMPONENTS.entries()) {
         if (code.includes(tagName)) {
-          usedComponents.add(componentName)
+          componentNames.forEach(componentName => usedComponents.add(componentName))
         }
       }
 

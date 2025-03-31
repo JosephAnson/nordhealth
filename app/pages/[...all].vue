@@ -12,7 +12,7 @@ useHead({
 
 <template>
   <BaseContainer>
-    <provet-empty-state class="bg-transparent mt-l m:mt-xxl">
+    <provet-empty-state class="bg-transparent">
       <h1 class="text-xl font-heading">
         Page Not Found
       </h1>

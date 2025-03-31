@@ -1,6 +1,5 @@
 import { expect, test } from '@playwright/test'
 import { expectNoA11yViolations } from '../utils/a11y'
-import { colorModes, expectVisualSnapshotInColorMode } from '../utils/visual-regression'
 
 test.describe('Error Page', () => {
   test.beforeEach(async ({ page }) => {
@@ -23,6 +22,6 @@ test.describe('Error Page', () => {
 
   test('should navigate back to home page', async ({ page }) => {
     await page.getByRole('button', { name: 'Retry' }).click()
-    await expect(page).toHaveURL('/signup')
+    await expect(page).toHaveURL('/')
   })
 })

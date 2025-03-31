@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import '@provetcloud/web-components/lib/Header'
-import '@provetcloud/web-components/lib/Footer'
-import '@provetcloud/web-components/lib/Icon'
-import '@provetcloud/web-components/lib/Tooltip'
+const { isAuthenticated, signout, session, usersInitials } = useAuth()
 </script>
 
 <template>
@@ -11,27 +8,62 @@ import '@provetcloud/web-components/lib/Tooltip'
     <provet-header>
       <NuxtLink to="/">
         <p class="text-l">
-          NordHealth Challenge
+          NordHealth
         </p>
       </NuxtLink>
 
-      <div slot="end" class="flex items-center gap-m">
-        <provet-button target="_blank" href="https://github.com/JosephAnson/nordhealth" square variant="plain" size="m" aria-describedby="github-tooltip">
-          <provet-icon name="generic-github" size="m" label="View the code on GitHub" />
-        </provet-button>
-        <provet-tooltip id="github-tooltip">
-          View the code on GitHub
-        </provet-tooltip>
+      <div slot="end" class="flex items-center gap-s m:gap-m">
         <TheColorModeToggle />
+
+        <NuxtLink v-if="!isAuthenticated" to="/signup">
+          <provet-button variant="primary">
+            Sign up
+          </provet-button>
+        </NuxtLink>
+
+        <template v-else>
+          <provet-dropdown>
+            <provet-button slot="toggle" variant="plain" aria-describedby="user-tooltip">
+              <provet-avatar :name="session?.email">
+                {{ usersInitials }}
+              </provet-avatar>
+            </provet-button>
+            <provet-avatar slot="header" size="s" :name="session?.email">
+              {{ usersInitials }}
+            </provet-avatar>
+            <p slot="header" class="n-color-text-weak n-font-size-s">
+              Signed in as <span class="n-font-weight-active">{{ session?.email }}</span>
+            </p>
+            <provet-dropdown-group class="px-s">
+              <provet-dropdown-item @click="signout">
+                Sign out
+                <provet-icon slot="end" name="interface-logout" />
+              </provet-dropdown-item>
+            </provet-dropdown-group>
+          </provet-dropdown>
+          <provet-tooltip id="user-tooltip" class="w-[200px]" position="block-end">
+            User ({{ session?.email }})
+          </provet-tooltip>
+        </template>
       </div>
     </provet-header>
 
-    <main id="main-content" class="flex-1">
+    <main id="main-content" class="flex-1 my-l m:my-xxl">
       <slot />
     </main>
 
     <provet-footer>
-      © 2025 Joseph Anson - Tech Challenge
+      <div class="flex w-full items-center justify-between">
+        <provet-button target="_blank" href="https://github.com/JosephAnson/nordhealth" square variant="plain" size="m">
+          <provet-icon name="generic-github" size="m" />
+          <provet-visually-hidden>
+            View the code on GitHub
+          </provet-visually-hidden>
+        </provet-button>
+        <p>
+          © 2025 Joseph Anson - Tech Challenge
+        </p>
+      </div>
     </provet-footer>
   </div>
 </template>

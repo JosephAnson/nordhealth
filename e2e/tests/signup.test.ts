@@ -23,7 +23,7 @@ test.describe('Signup Page', () => {
     await expect(page.getByRole('textbox', { name: 'Password', exact: true })).toBeVisible()
     await expect(page.getByRole('textbox', { name: 'Confirm Password' })).toBeVisible()
     await expect(page.getByRole('checkbox', { name: 'I\'d like to receive occasional product updates' })).toBeVisible()
-    await expect(page.getByRole('button', { name: 'Sign up' })).toBeVisible()
+    await expect(page.getByRole('main').getByRole('button', { name: 'Sign up' })).toBeVisible()
   })
 
   test('should validate email format', async ({ page }) => {
@@ -89,7 +89,7 @@ test.describe('Signup Page', () => {
     const emailInput = page.getByRole('textbox', { name: 'Email' })
     const passwordInput = page.getByRole('textbox', { name: 'Password', exact: true })
     const confirmPasswordInput = page.getByRole('textbox', { name: 'Confirm Password' })
-    const submitButton = page.getByRole('button', { name: 'Sign up' })
+    const submitButton = page.getByRole('main').getByRole('button', { name: 'Sign up' })
 
     await emailInput.fill('test@example.com')
     await passwordInput.fill('ValidPassword123!')

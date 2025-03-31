@@ -22,7 +22,7 @@ test.describe('404 Page', () => {
 
   test('should navigate back to home page', async ({ page }) => {
     await page.getByRole('link', { name: 'Back to Home' }).click()
-    await expect(page).toHaveURL('/signup')
+    await expect(page).toHaveURL('/')
   })
 
   test('should handle various non-existent routes', async ({ page }) => {

@@ -15,14 +15,3 @@ export const userSchema = z.object({
 })
 
 export type UserSchema = z.infer<typeof userSchema>
-
-export const updateUserSchema = userSchema
-  .extend({
-    confirmPassword: z.string({ required_error: 'Confirm password is required' }).min(1, { message: 'Confirm password is required' }),
-  })
-  .refine(data => data.password === data.confirmPassword, {
-    path: ['confirmPassword'],
-    message: 'Passwords do not match',
-  })
-
-export type UpdateUserSchema = z.infer<typeof updateUserSchema>
