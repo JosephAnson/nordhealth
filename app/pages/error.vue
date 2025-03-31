@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const router = useRouter()
+
 useHead({
   title: 'Error - Something Went Wrong',
   meta: [
@@ -18,11 +20,9 @@ useHead({
     <p>Looks like something went wrong. Click Retry to try again.</p>
 
     <provet-stack justify-content="center" gap="s" direction="horizontal">
-      <NuxtLink to="/">
-        <provet-button variant="primary">
-          Retry
-        </provet-button>
-      </NuxtLink>
+      <provet-button href="#" variant="primary" @click.prevent="router.push('/')">
+        Retry
+      </provet-button>
     </provet-stack>
   </provet-empty-state>
 </template>

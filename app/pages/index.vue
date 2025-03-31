@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { isAuthenticated } = useAuth()
-
+const router = useRouter()
 useHead({
   title: 'Redefining digital healthcare',
   titleTemplate: 'NordHealth | %s',
@@ -18,17 +18,13 @@ useHead({
       </div>
 
       <div slot="footer">
-        <NuxtLink v-if="!isAuthenticated" to="/signup">
-          <provet-button expand variant="primary">
-            Sign up
-          </provet-button>
-        </NuxtLink>
+        <provet-button v-if="!isAuthenticated" expand variant="primary" href="#" @click.prevent="router.push('/signup')">
+          Sign up
+        </provet-button>
 
-        <NuxtLink v-else to="/success">
-          <provet-button expand variant="primary">
-            Dashboard
-          </provet-button>
-        </NuxtLink>
+        <provet-button v-else expand variant="primary" href="#" @click.prevent="router.push('/success')">
+          Dashboard
+        </provet-button>
       </div>
     </provet-card>
   </BaseContainer>

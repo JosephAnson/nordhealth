@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import '@provetcloud/web-components/lib/Stack'
-
 definePageMeta({
   middleware: [
     'auth',

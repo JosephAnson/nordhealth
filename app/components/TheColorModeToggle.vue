@@ -50,7 +50,7 @@ useHead({
 
 <template>
   <provet-dropdown>
-    <provet-button title="Interface options" slot="toggle" variant="plain" aria-describedby="color-mode-tooltip">
+    <provet-button slot="toggle" variant="plain" aria-describedby="color-mode-tooltip">
       <provet-icon size="m" name="navigation-settings" />
       <provet-visually-hidden>
         Interface options

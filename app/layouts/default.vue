@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const { isAuthenticated, signout, session, usersInitials } = useAuth()
+const router = useRouter()
 </script>
 
 <template>
@@ -15,11 +16,9 @@ const { isAuthenticated, signout, session, usersInitials } = useAuth()
       <div slot="end" class="flex items-center gap-s m:gap-m">
         <TheColorModeToggle />
 
-        <NuxtLink v-if="!isAuthenticated" to="/signup">
-          <provet-button variant="primary">
-            Sign up
-          </provet-button>
-        </NuxtLink>
+        <provet-button v-if="!isAuthenticated" href="#" variant="primary" @click.prevent="router.push('/signup')">
+          Sign up
+        </provet-button>
 
         <template v-else>
           <provet-dropdown>

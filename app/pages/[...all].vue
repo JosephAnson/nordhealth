@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const router = useRouter()
+
 useHead({
   title: '404 - Page Not Found',
   meta: [
@@ -21,11 +23,9 @@ useHead({
       </div>
       <p>The page you are looking for could not be found.</p>
       <provet-stack justify-content="center" gap="s" direction="horizontal">
-        <NuxtLink to="/">
-          <provet-button variant="primary">
-            Back to Home
-          </provet-button>
-        </NuxtLink>
+        <provet-button variant="primary" href="#" @click.prevent="router.push('/')">
+          Back to Home
+        </provet-button>
       </provet-stack>
     </provet-empty-state>
   </BaseContainer>

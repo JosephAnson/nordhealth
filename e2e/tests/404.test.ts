@@ -17,7 +17,7 @@ test.describe('404 Page', () => {
   test('should display 404 message and navigation', async ({ page }) => {
     await expect(page.getByRole('heading', { name: 'Page not found' })).toBeVisible()
     await expect(page.getByText('The page you are looking for could not be found.')).toBeVisible()
-    await expect(page.getByRole('button', { name: 'Back to Home' })).toBeVisible()
+    await expect(page.getByRole('link', { name: 'Back to Home' })).toBeVisible()
   })
 
   test('should navigate back to home page', async ({ page }) => {
