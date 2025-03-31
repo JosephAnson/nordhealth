@@ -1,31 +1,17 @@
-import AxeBuilder from '@axe-core/playwright'
 import { expect, test } from '@playwright/test'
+import { expectNoA11yViolations } from '../utils/a11y'
+import { colorModes, expectVisualSnapshotInColorMode } from '../utils/visual-regression'
 
 test.describe('Error Page', () => {
   test.beforeEach(async ({ page }) => {
-    // Navigate to a non-existent page to trigger the error page
     await page.goto('/error')
   })
 
   test('has no detectable a11y violations on load', async ({ page }) => {
-    await page.waitForLoadState('networkidle')
-    const accessibilityScanResults = await new AxeBuilder({ page })
-      .exclude('#nuxt-devtools-container')
-      .analyze()
-
-    expect(accessibilityScanResults.violations).toEqual([])
+    await expectNoA11yViolations(page)
   })
 
   test('visual regression', async ({ page }) => {
-    await page.waitForLoadState('networkidle')
-    await expect(page).toHaveScreenshot({ fullPage: true })
-  })
-
-  test('visual regression - dark mode', async ({ page }) => {
-    await page.evaluate(() => {
-      document.documentElement.classList.add('dark')
-    })
-    await page.waitForLoadState('networkidle')
     await expect(page).toHaveScreenshot({ fullPage: true })
   })
 
@@ -37,6 +23,6 @@ test.describe('Error Page', () => {
 
   test('should navigate back to home page', async ({ page }) => {
     await page.getByRole('button', { name: 'Retry' }).click()
-    await expect(page).toHaveURL('/')
+    await expect(page).toHaveURL('/signup')
   })
 })

@@ -11,20 +11,18 @@ import '@provetcloud/web-components/lib/Tooltip'
     <provet-header>
       <NuxtLink to="/">
         <p class="text-l">
-          Provet Code Challenge
+          NordHealth Challenge
         </p>
       </NuxtLink>
 
       <div slot="end" class="flex items-center gap-m">
-        <NuxtLink target="_blank" to="https://github.com/JosephAnson/nordhealth">
-          <provet-button square variant="plain" size="m" aria-describedby="github-tooltip">
-            <provet-icon name="generic-github" size="m" label="View the code on GitHub" />
-          </provet-button>
-          <provet-tooltip id="github-tooltip">
-            View the code on GitHub
-          </provet-tooltip>
-        </NuxtLink>
-        <TheDarkToggle />
+        <provet-button target="_blank" href="https://github.com/JosephAnson/nordhealth" square variant="plain" size="m" aria-describedby="github-tooltip">
+          <provet-icon name="generic-github" size="m" label="View the code on GitHub" />
+        </provet-button>
+        <provet-tooltip id="github-tooltip">
+          View the code on GitHub
+        </provet-tooltip>
+        <TheColorModeToggle />
       </div>
     </provet-header>
 

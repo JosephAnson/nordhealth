@@ -44,6 +44,8 @@ export default defineNuxtConfig({
 
   colorMode: {
     classSuffix: '',
+    fallback: 'light',
+    preference: 'light',
   },
 
   routeRules: {

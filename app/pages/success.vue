@@ -12,7 +12,7 @@ useHead({
 
 <template>
   <BaseContainer>
-    <provet-card class="w-full max-w-[700px] mx-auto mt-xxl">
+    <provet-card class="w-full max-w-[700px] mx-auto mt-l m:mt-xxl">
       <h1 slot="header" class="font-heading">
         Account Created Successfully!
       </h1>

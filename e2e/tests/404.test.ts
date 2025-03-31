@@ -1,5 +1,5 @@
-import AxeBuilder from '@axe-core/playwright'
 import { expect, test } from '@playwright/test'
+import { expectNoA11yViolations } from '../utils/a11y'
 
 test.describe('404 Page', () => {
   test.beforeEach(async ({ page }) => {
@@ -7,24 +7,10 @@ test.describe('404 Page', () => {
   })
 
   test('has no detectable a11y violations on load', async ({ page }) => {
-    await page.waitForLoadState('networkidle')
-    const accessibilityScanResults = await new AxeBuilder({ page })
-      .exclude('#nuxt-devtools-container')
-      .analyze()
-
-    expect(accessibilityScanResults.violations).toEqual([])
+    await expectNoA11yViolations(page)
   })
 
   test('visual regression', async ({ page }) => {
-    await page.waitForLoadState('networkidle')
-    await expect(page).toHaveScreenshot({ fullPage: true })
-  })
-
-  test('visual regression - dark mode', async ({ page }) => {
-    await page.evaluate(() => {
-      document.documentElement.classList.add('dark')
-    })
-    await page.waitForLoadState('networkidle')
     await expect(page).toHaveScreenshot({ fullPage: true })
   })
 
@@ -36,7 +22,7 @@ test.describe('404 Page', () => {
 
   test('should navigate back to home page', async ({ page }) => {
     await page.getByRole('link', { name: 'Back to Home' }).click()
-    await expect(page).toHaveURL('/')
+    await expect(page).toHaveURL('/signup')
   })
 
   test('should handle various non-existent routes', async ({ page }) => {

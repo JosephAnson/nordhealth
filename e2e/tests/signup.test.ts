@@ -1,5 +1,6 @@
-import AxeBuilder from '@axe-core/playwright'
 import { expect, test } from '@playwright/test'
+import { expectNoA11yViolations } from '../utils/a11y'
+import { colorModes, expectVisualSnapshotInColorMode } from '../utils/visual-regression'
 
 test.describe('Signup Page', () => {
   test.beforeEach(async ({ page }) => {
@@ -7,26 +8,14 @@ test.describe('Signup Page', () => {
   })
 
   test('has no detectable a11y violations on load', async ({ page }) => {
-    await page.waitForLoadState('networkidle')
-    const accessibilityScanResults = await new AxeBuilder({ page })
-      .exclude('#nuxt-devtools-container')
-      .analyze()
-
-    expect(accessibilityScanResults.violations).toEqual([])
+    await expectNoA11yViolations(page)
   })
 
-  test('visual regression', async ({ page }) => {
-    await page.waitForLoadState('networkidle')
-    await expect(page).toHaveScreenshot({ fullPage: true })
-  })
-
-  test('visual regression - dark mode', async ({ page }) => {
-    await page.evaluate(() => {
-      document.documentElement.classList.add('dark')
+  for (const mode of colorModes) {
+    test(`visual regression for color modes: ${mode}`, async ({ page }) => {
+      await expectVisualSnapshotInColorMode(page, mode)
     })
-    await page.waitForLoadState('networkidle')
-    await expect(page).toHaveScreenshot({ fullPage: true })
-  })
+  }
 
   test('should display all form elements correctly', async ({ page }) => {
     await expect(page.getByRole('heading', { name: 'Create your account' })).toBeVisible()

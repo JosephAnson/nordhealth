@@ -46,7 +46,7 @@ const onSubmit = handleSubmit(() => registerUser())
 <template>
   <BaseContainer>
     <div class="flex flex-col items-center justify-center flex-1">
-      <provet-card class="w-full max-w-[360px] mx-auto mt-xxl">
+      <provet-card class="w-full max-w-[360px] mx-auto mt-l m:mt-xxl">
         <h1 slot="header" class="text-l font-semibold">
           Create your account
         </h1>
