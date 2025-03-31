@@ -30,12 +30,13 @@ This repository contains a client-side rendered Nuxt 3 application that allows u
 - Email and password form with validation
 - Password visibility toggle
 - Newsletter opt-in checkbox
-- Implemented basic cookie based auth to simulate a real-world auth system
 - Success page after sign-up
 - Fully responsive design
 - Client-side validation
 - Dark/Light and High Contrast mode support
-- Implemented server api to simulate a real-world api
+- Implemented basic cookie based auth to simulate a real-world auth system
+- CI/CD pipeline with Github Actions
+- Hosting with Docker on Private Server
 
 ## Getting Started
 
