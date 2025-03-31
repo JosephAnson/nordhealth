@@ -1,4 +1,4 @@
-import type { Plugin } from 'vite'
+import type { TransformResult } from 'vite'
 
 interface ProvetAutoImportOptions {
   /**
@@ -35,7 +35,11 @@ const PROVET_COMPONENTS = new Map<string, string[]>([
   ['provet-visually-hidden', ['VisuallyHidden']],
 ])
 
-export default function provetAutoImport(options: ProvetAutoImportOptions = {}): Plugin {
+export default function provetAutoImport(options: ProvetAutoImportOptions = {}): {
+  name: string
+  enforce: 'post'
+  transform: (code: string, id: string) => TransformResult | null
+} {
   const packageName = options.packageName || '@provetcloud/web-components/lib'
 
   return {

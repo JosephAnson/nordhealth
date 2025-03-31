@@ -7,7 +7,7 @@ This repository contains a client-side rendered Nuxt 3 application that allows u
 ## Design Decisions
 
 - I created a vite plugin to automatically import the Provet Cloud Design System components, this is to improve the developer experience and reduce the amount of code needed to be written. It also reduces the amount of errors that can occur due to missing imports.
-- Opted to write tests with playwright over vitest, as I can focus on testing the component and not the implementation details. Unfortunately due to working with web components you're unable to use accessiblity first unit testing tools such as testing library when writing tests with vitest, unless you use some workarounds to access the shadow dom however that requires a lot of extra code and is not always reliable. So it's better to use playwright for this.
+- Opted to write most page and component tests with playwright over vitest, as I can focus on testing the component and not the implementation details. Unfortunately due to working with web components you're often left to do contract testing and you're unable to use accessiblity first unit testing tools such as testing library. There are some workarounds to access the shadow dom in unit tests, however that requires a lot of extra code and is not always reliable, so it's better to use playwright for this.
 - Opted to use TailwindCSS over using the Provet Cloud Design System css directly. This was done to better optimise the final bundle size, as importing the entire design system css would be 39kb and by using tailwind I was able to limit that to only 12kb as I wasn't using a lot of the css file. Also by adding the design system variables to the tailwind config I'm able to get tailwind intellisense which can recommend all the available css-variables in the design system, which improves the developer experience.
 - Naming convention for components follows: https://vuejs.org/style-guide/rules-strongly-recommended.html#base-component-names
 - No store was used in this application as it doesn't require it, depending on the use case a store could be beneficial to track the authenticated user.
@@ -35,8 +35,11 @@ This repository contains a client-side rendered Nuxt 3 application that allows u
 - Client-side validation
 - Dark/Light and High Contrast mode support
 - Implemented basic cookie based auth to simulate a real-world auth system
-- CI/CD pipeline with Github Actions
+- CI/CD pipeline with Github Actions for linting, typechecking, unit testing and deployment
 - Hosting with Docker on Private Server
+- Unit testing with Vitest, Testing library and testing-library/jest-dom
+- End-to-end testing with Playwright for component and accessibility testing
+- Visual regression testing with Playwright
 
 ## Getting Started
 
@@ -63,6 +66,9 @@ This repository contains a client-side rendered Nuxt 3 application that allows u
 - `pnpm start:generate` - Serve generated static site
 - `pnpm lint` - Run ESLint
 - `pnpm typecheck` - Run TypeScript type checking
+- `pnpm unit` - Run unit tests
+- `pnpm unit:ui` - Run unit tests with UI
+- `pnpm unit:coverage` - Run unit tests with coverage
 - `pnpm e2e` - Run end-to-end tests
 - `pnpm e2e:ui` - Run end-to-end tests with UI
 - `pnpm e2e:update` - Update snapshots
